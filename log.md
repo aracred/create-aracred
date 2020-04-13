@@ -52,3 +52,19 @@ If you want to make your code consumable as an actual module so that others can 
 require = require('esm')(module)
 require('../src/cli').cli(process.argv)
 ```
+
+add a files key in your package.json to specify which files should be published.
+
+```json
+ },
+ "files": [
+   "bin/",
+   "src/",
+   "templates/"
+ ]
+}
+```
+
+check what will be published `npm pack --dry-run`
+
+publish `npm publish`

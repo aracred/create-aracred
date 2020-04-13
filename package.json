@@ -1,10 +1,10 @@
 {
-  "name": "create-project",
+  "name": "test-create-project",
   "version": "1.0.0",
   "description": "A CLI to bootstrap a new AraCred instance",
   "main": "src/index.js",
   "bin": {
-    "@pythonpete/create-project": "bin/create-project",
+    "@pythonpete32/create-project": "bin/create-project",
     "create-project": "bin/create-project"
   },
   "scripts": {
