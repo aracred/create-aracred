@@ -43,3 +43,12 @@ This will run git init whenever --git is passed or the user chooses git in the p
 Give it a try by deleting your existing test folder first and creating a new one. Then run:
 
 `create-project typescript --git --install`
+
+## make consumable
+
+If you want to make your code consumable as an actual module so that others can reuse your logic in their code, we'll have to add an index.js file to our src/ directory that exposes the content from main.js:
+
+```js
+require = require('esm')(module)
+require('../src/cli').cli(process.argv)
+```
