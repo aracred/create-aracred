@@ -1,0 +1,21 @@
+{
+  "name": "create-project",
+  "version": "1.0.0",
+  "description": "A CLI to bootstrap a new AraCred instance",
+  "main": "src/index.js",
+  "bin": {
+    "@pythonpete/create-project": "bin/create-project",
+    "create-project": "bin/create-project"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "aragon, sourcecred, dao, ethereum, cli, create-project"
+  ],
+  "author": "pythonpete32",
+  "license": "MIT",
+  "dependencies": {
+    "esm": "^3.2.25"
+  }
+}
