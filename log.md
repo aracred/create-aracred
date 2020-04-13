@@ -26,3 +26,20 @@ Now that we are able to determine the respective options through prompts and com
 To test our progress, create a new directory somewhere like ~/test-dir on your system and run inside it the command using one of your templates. For example:
 
 `create-project typescript --git`
+
+## login: initialise git _interactive broken_
+
+**_Logic is broken in interactive workflow_**
+Now there are two more steps we want our CLI to do. We want to optionally initialize git and install our dependencies. For this we'll use three more dependencies:
+
+```md
+- execa: which allows us to easily run external commands like git
+- pkg-install: to trigger either yarn install or npm install depending on what the user uses
+- listr which: let's us specify a list of tasks and gives the user a neat progress overview
+```
+
+This will run git init whenever --git is passed or the user chooses git in the prompt and it will run npm install or yarn whenever the user passes --install, otherwise it will skip the task with a message informing the user to pass --install if they want automatic install.
+
+Give it a try by deleting your existing test folder first and creating a new one. Then run:
+
+`create-project typescript --git --install`
