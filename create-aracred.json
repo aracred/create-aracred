@@ -1,0 +1,33 @@
+{
+  "source": {
+    "github": true,
+    "discord": true,
+    "discourse": false
+  },
+  "repos": ["aracred/AraCred", "aracred/website"],
+  "guildId": "431243234",
+  "dao": {
+    "daoAddress": "0xc42BF4Ebc50797888bC34631aeb36b3c1a282fA2",
+    "tokenManager": "0x1B8E0F86733662B588C08e887ebfa173a11Ac97d",
+    "votingAddress": "0xcB8149cCB561C94DfD648a0e8494ea316E5815C1",
+    "environment": "mainnet"
+  },
+  "organisation": "smokeyCo/aracred",
+  "identities": [
+    {
+      "username": "aaron",
+      "address": "0xcB8149cCB561C94DfD648a0e8494ea316E5815C1",
+      "aliases": ["github/pythonpete32", "discord/2134234"]
+    },
+    {
+      "username": "burrrata",
+      "address": "0xa0Ff266aeC8519822F1CFffe206e17330Eb9D8E7",
+      "aliases": ["github/burrrata", "discord/45234523"]
+    },
+    {
+      "username": "enrique",
+      "address": "0xcB8149cCB561C94DfD648a0e8494ea316E5815C1",
+      "aliases": ["github/enrirue", "discord/24312341234"]
+    }
+  ]
+}

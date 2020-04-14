@@ -273,6 +273,7 @@ function addUsers() {
     }
 
     user.username = answers.username
+    user.address = answers.address
     user.aliases = aliases
     identities.push(user)
     if (answers.more === false) {

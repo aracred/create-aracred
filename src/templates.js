@@ -7,11 +7,22 @@
 var addressbook = require('../templates/config/addressbook.json')
 
 module.exports = {
-  addressbook: async addresses => {
+  dao: addresses => {
     const dao = []
     dao[0] = addresses
     dao[0].mints = []
     dao[0].burns = []
-    return JSON.stringify(dao)
+    return JSON.stringify(dao, null, 2)
+  },
+  addressbook: users => {
+    book = []
+    users.map(user => {
+      member = {}
+      member.name = user.username
+      member.createdAt = 1585730646045
+      member.address = user.address
+      book.push(member)
+    })
+    return JSON.stringify(book, null, 2)
   },
 }
