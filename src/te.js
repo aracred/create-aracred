@@ -4,6 +4,7 @@ const {
   projectTemplate,
   weightsTemplate,
   writeTemplate,
+  copyTemplate,
   mkdirs } = require('./templates')
 
 var Configstore = require('configstore')
@@ -23,6 +24,15 @@ writeTemplate(`${path}config/addressbook.json`, addressbook)
 writeTemplate(`${path}config/dao.json`, dao)
 writeTemplate(`${path}config/project.json`, project)
 writeTemplate(`${path}config/weights.json`, weights)
+
+copyTemplate(
+  './templates/.github/workflows/run_cli.yml',
+  `${path}.github/workflows/run_cli.yml`
+)
+copyTemplate(
+  './templates/.github/workflows/run_sc.yml',
+  `${path}.github/workflows/run_sc.yml`
+)
 
 
 

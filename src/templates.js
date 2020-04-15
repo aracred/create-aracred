@@ -96,7 +96,7 @@ const writeTemplate = (path, content) => {
 const copyTemplate = (src, dest) => {
   fs.copyFile(src, dest, (err) => {
     if (err) throw err;
-    console.log(`Written to ${dest}`);
+    console.log(`Sucessfully copied to ${dest}`);
   });
 }
 
