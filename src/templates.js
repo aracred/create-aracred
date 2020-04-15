@@ -1,3 +1,6 @@
+const execa = require('execa');
+const Listr = require('listr');
+
 const fs = require('fs');
 const userName = require('os').userInfo().username;
 const packageJson = require('../package.json')
@@ -162,7 +165,7 @@ const createAracred = async () => {
     `${path}src/mint.js`
   )
   copyTemplate(
-    './templates/package.json',
+    './templates/package',
     `${path}package.json`
   )
 }
@@ -172,7 +175,36 @@ const getStore = () => {
   console.log(JSON.stringify(config, null, 2));
 }
 
+const runTasks = async () => {
+  const tasks = new Listr([
+    {
+      title: 'Create AraCred',
+      task: () => {
+        return new Listr([
+          {
+            title: 'Creating AraCred Files',
+            task: async () => Promise.resolve(createAracred())
+          }
+        ]);
+      }
+    },
+    {
+      title: 'Initialise Git',
+      task: (ctx, task) => execa.command(`git init -q /home/${userName}/aracred/`)
+        .catch((err) => {
+          console.log('Error initialising git')
+          console.log(err)
+        })
+    }
+  ]);
+
+  tasks.run().catch(err => {
+    console.error(err);
+  });
+
+}
+
 module.exports = {
-  createAracred,
+  runTasks,
   getStore
 }
