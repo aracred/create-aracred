@@ -166,7 +166,13 @@ const createAracred = async () => {
     `${path}package.json`
   )
 }
+const getStore = () => {
+  const rawConfig = fs.readFileSync(`/home/${userName}/.config/configstore/create-aracred.json`);
+  const config = JSON.parse(rawConfig);
+  console.log(JSON.stringify(config, null, 2));
+}
 
 module.exports = {
-  createAracred
+  createAracred,
+  getStore
 }

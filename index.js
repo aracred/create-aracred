@@ -2,7 +2,8 @@ const chalk = require('chalk')
 const clear = require('clear')
 const Configstore = require('configstore')
 const packageJson = require('./package.json')
-var inquirer = require('inquirer')
+const inquirer = require('inquirer')
+const { getStore, createAracred } = require('./templates')
 
 // Create a Configstore instance
 const config = new Configstore(packageJson.name)

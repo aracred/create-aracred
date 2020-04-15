@@ -1,9 +1,14 @@
 const execa = require('execa');
 const Listr = require('listr');
 const create = require('./templates')
+const fs = require('fs');
 //console.log(create.createAracred())
-
+const packageJson = require('../package.json')
+const Configstore = require('configstore')
+const config = new Configstore(packageJson.name)
 const userName = require('os').userInfo().username;
+
+const { getStore, createAracred } = require('./templates')
 
 const tasks = new Listr([
   {
@@ -26,10 +31,15 @@ const tasks = new Listr([
       })
   }
 ]);
-
+/*
 tasks.run().catch(err => {
   console.error(err);
 });
+*/
+
+console.log(getStore())
+
+
 
 
 
