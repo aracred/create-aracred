@@ -1,0 +1,11 @@
+{
+  "editor.formatOnSave": true,
+  "javascript": {
+    "editor.autoFixOnSave": true
+  },
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#312E24",
+    "titleBar.activeBackground": "#454032",
+    "titleBar.activeForeground": "#FBFAF9"
+  }
+}
