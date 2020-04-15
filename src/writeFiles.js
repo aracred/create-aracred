@@ -1,11 +1,14 @@
-fs.writeFile(
-    `/home/${userName}/.aragon/mainnet_key.json`,
-    fileContent(),
-    err => {
+const fs = require('fs');
+const path = `/home/aaron/aracred`
+const write = (path, content) => {
+    fs.writeFile(path, content, err => {
         if (err) {
-            console.log('Error writing file', err)
+            console.log(`Error writing file ${path}`, err)
         } else {
-            console.log('Successfully setup keys')
+            console.log(`Sucessfully written to ${path}`)
         }
-    },
-)
+    })
+}
+write(`${path}/test.json`, "hello")
+
+module.export = write

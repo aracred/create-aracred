@@ -1,10 +1,12 @@
+const fs = require('fs');
+const userName = require('os').userInfo().username;
+
 /*
  * these template funcions take some input that was saved in the config store, and returns some
  * stringified data ready for writing.
  * TODO: create a function for each template file that needs editing
  */
-
-const dao = addresses => {
+const daoTemplate = addresses => {
   const dao = []
   dao[0] = addresses
   dao[0].mints = []
@@ -12,7 +14,7 @@ const dao = addresses => {
   return JSON.stringify(dao, null, 2)
 }
 
-const addressbook = users => {
+const addressbookTemplate = users => {
   book = []
   users.map(user => {
     member = {}
@@ -24,7 +26,7 @@ const addressbook = users => {
   return JSON.stringify(book, null, 2)
 }
 
-const project = (discord, identities, repos) => {
+const projectTemplate = (discord, identities, repos) => {
   const project = [
     {
       type: 'sourcecred/project',
@@ -53,7 +55,7 @@ const project = (discord, identities, repos) => {
   return JSON.stringify(project, null, 2)
 }
 
-const weights = () => {
+const weightsTemplate = () => {
   const weights = [
     {
       type: 'sourcecred/weights',
@@ -82,4 +84,42 @@ const weights = () => {
   return weights
 }
 
-module.exports = { dao, addressbook, project, weights }
+const writeTemplate = (path, content) => {
+  fs.writeFile(path, content, err => {
+    if (err) {
+      console.log(`Error writing file ${path}`, err)
+    } else {
+      console.log(`Sucessfully written to ${path}`)
+    }
+  })
+}
+
+const mkdirs = () => {
+  const rootDir = `/home/${userName}/aracred`
+  try {
+    if (!fs.existsSync(rootDir)) {
+      fs.mkdirSync(rootDir)
+      console.log(`created /home/${userName}/aracred`)
+
+      fs.mkdirSync(rootDir + '/.github')
+      console.log(`created /home/${userName}/aracred/.github`)
+
+      fs.mkdirSync(rootDir + '/.github/workflows')
+      console.log(`created /home/${userName}/aracred/.github/workflows`)
+
+      fs.mkdirSync(rootDir + '/config')
+      console.log(`created /home/${userName}/aracred/config`)
+
+      fs.mkdirSync(rootDir + '/src')
+      console.log(`created /home/${userName}/aracred/src`)
+    } else {
+      console.log(`/home/${userName}/aracred already exists! delete it and run again`)
+    }
+  } catch (err) {
+    console.log(`error in mkdir templates.js`)
+    console.error(err)
+    process.exit(-1)
+  }
+}
+
+module.exports = { daoTemplate, addressbookTemplate, projectTemplate, weightsTemplate, writeTemplate, mkdirs }
