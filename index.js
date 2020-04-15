@@ -3,7 +3,7 @@ const clear = require('clear')
 const Configstore = require('configstore')
 const packageJson = require('./package.json')
 const inquirer = require('inquirer')
-const { getStore, createAracred } = require('./templates')
+const { getStore, runTasks } = require('./src/templates')
 
 // Create a Configstore instance
 const config = new Configstore(packageJson.name)
@@ -56,7 +56,7 @@ const daoPrompt = [
   },
   {
     name: 'network',
-    type: 'checkbox',
+    type: 'list',
     message: 'Which network is the DAO on:',
     choices: ['mainnet', 'rinkeby'],
   },
@@ -279,14 +279,26 @@ function addUsers() {
     identities.push(user)
     if (answers.more === false) {
       config.set('identities', identities)
-      console.log('done!')
-      console.log(config)
+      confirmSettings()
     } else {
       config.set('identities', identities)
       addUsers()
     }
   })
 }
+
+function confirmSettings() {
+  inquirer
+    .prompt({
+      type: 'confirm',
+      name: 'settings',
+      message: getStore(),
+    })
+    .then(answer => {
+      answer.settings === true ? runTasks() : console.log('Rerun create-aracred')
+    })
+}
+
 
 // ---------------------------------------------------------------------- //
 
