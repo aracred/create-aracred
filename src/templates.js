@@ -1,5 +1,10 @@
 const fs = require('fs');
 const userName = require('os').userInfo().username;
+const packageJson = require('../package.json')
+const Configstore = require('configstore')
+
+const config = new Configstore(packageJson.name)
+const path = `/home/${userName}/aracred/`
 
 /*
  * these template funcions take some input that was saved in the config store, and returns some
@@ -128,12 +133,40 @@ const mkdirs = () => {
   }
 }
 
+const createAracred = async () => {
+  mkdirs()
+
+  writeTemplate(`${path}config/addressbook.json`, addressbookTemplate(config.get('identities')))
+  writeTemplate(`${path}config/dao.json`, daoTemplate(config.get('identities')))
+  writeTemplate(`${path}config/project.json`, projectTemplate(config.get('discordId'), config.get('identities'), config.get('repos')))
+  writeTemplate(`${path}config/weights.json`, weightsTemplate())
+
+  copyTemplate(
+    './templates/.github/workflows/run_cli.yml',
+    `${path}.github/workflows/run_cli.yml`
+  )
+  copyTemplate(
+    './templates/.github/workflows/run_sc.yml',
+    `${path}.github/workflows/run_sc.yml`
+  )
+  copyTemplate(
+    './templates/src/processGrain.js',
+    `${path}src/processGrain.js`
+  )
+  copyTemplate(
+    './templates/src/setupAragon.js',
+    `${path}src/setupAragon.js`
+  )
+  copyTemplate(
+    './templates/src/mint.js',
+    `${path}src/mint.js`
+  )
+  copyTemplate(
+    './templates/package.json',
+    `${path}package.json`
+  )
+}
+
 module.exports = {
-  daoTemplate,
-  addressbookTemplate,
-  projectTemplate,
-  weightsTemplate,
-  writeTemplate,
-  copyTemplate,
-  mkdirs
+  createAracred
 }
