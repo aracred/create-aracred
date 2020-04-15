@@ -1,12 +1,10 @@
-const { addressbook, dao } = require('./templates')
+const { addressbook, dao, project } = require('./templates')
 var Configstore = require('configstore')
 const packageJson = require('../package.json')
 const config = new Configstore(packageJson.name)
 
-const input = {
-  daoAddress: 'asgfwersvdc',
-  tokenManager: 'cwersfdc',
-  votingAddress: 'sefdvcwesrdfx',
-  environment: 'mainnet',
-}
-console.log(addressbook(config.get('identities')))
+// console.log(addressbook(config.get('identities')))
+
+console.log(
+  project(config.get('guildId'), config.get('identities'), config.get('repos')),
+)

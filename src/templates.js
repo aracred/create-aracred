@@ -25,4 +25,32 @@ module.exports = {
     })
     return JSON.stringify(book, null, 2)
   },
+  project: (discord, identities, repos) => {
+    const project = [
+      {
+        type: 'sourcecred/project',
+        version: '0.4.0',
+      },
+      {
+        id: '@AraCred',
+        discord: {
+          reactionWeights: {
+            '👍': 1,
+            '🔥': 1,
+            '❤️': 1,
+            '💯': 1,
+            '🙏': 1,
+          },
+        },
+      },
+    ]
+    const ids = identities.map(id => {
+      const { username, aliases } = id
+      return { username: username, aliases: aliases }
+    })
+    project[1].discord.guildId = discord
+    project[1].repoIds = repos
+    project[1].identities = ids
+    return JSON.stringify(project, null, 2)
+  },
 }
