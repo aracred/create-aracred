@@ -93,6 +93,12 @@ const writeTemplate = (path, content) => {
     }
   })
 }
+const copyTemplate = (src, dest) => {
+  fs.copyFile(src, dest, (err) => {
+    if (err) throw err;
+    console.log(`Written to ${dest}`);
+  });
+}
 
 const mkdirs = () => {
   const rootDir = `/home/${userName}/aracred`
@@ -122,4 +128,12 @@ const mkdirs = () => {
   }
 }
 
-module.exports = { daoTemplate, addressbookTemplate, projectTemplate, weightsTemplate, writeTemplate, mkdirs }
+module.exports = {
+  daoTemplate,
+  addressbookTemplate,
+  projectTemplate,
+  weightsTemplate,
+  writeTemplate,
+  copyTemplate,
+  mkdirs
+}
