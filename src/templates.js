@@ -94,17 +94,12 @@ const weightsTemplate = () => {
 
 const writeTemplate = (path, content) => {
   fs.writeFile(path, content, err => {
-    if (err) {
-      console.log(`Error writing file ${path}`, err)
-    } else {
-      console.log(`Sucessfully written to ${path}`)
-    }
+    if (err) throw err;
   })
 }
 const copyTemplate = (src, dest) => {
   fs.copyFile(src, dest, (err) => {
     if (err) throw err;
-    console.log(`Sucessfully copied to ${dest}`);
   });
 }
 
