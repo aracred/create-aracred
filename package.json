@@ -1,8 +1,8 @@
 {
   "name": "create-aracred",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "CLI to bootstrap an aracred instance.",
+  "main": "./src/index.js",
   "dependencies": {
     "chalk": "^4.0.0",
     "clear": "^0.1.0",
@@ -21,7 +21,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./index.js"
+    "start": "node src/index.js"
   },
   "author": "",
   "license": "ISC"
