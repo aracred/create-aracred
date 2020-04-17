@@ -3,7 +3,6 @@ const Configstore = require('configstore')
 const {
   configureAracred,
   getBotTemplate,
-  getGithubToken,
   getDaoParams,
   getDiscordParams,
   getRepoTemplate,
@@ -16,7 +15,6 @@ configStore.clear()
 
 async function main() {
   useFiglet('Aracred')
-  await getGithubToken(configStore)
   await getDaoParams(configStore)
   await getDiscordParams(configStore)
   await getRepoTemplate()
