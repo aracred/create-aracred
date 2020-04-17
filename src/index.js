@@ -37,10 +37,8 @@ async function main() {
     channelName,
     channelId,
   })
-
-  console.log(chalk.blue('All done!'))
 }
 
 main()
-  .then(() => console.log(configStore.all))
+  .then(() => console.log(chalk.blue('All done!')))
   .catch((err) => console.log(err))
